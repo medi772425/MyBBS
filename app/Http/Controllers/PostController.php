@@ -19,6 +19,6 @@ class PostController extends Controller
 
     public function show($id)
     {
-        return view('show')->with(['post' => $this->posts[$id]]);
+        return view('posts.show')->with(['post' => $this->posts[$id]]);
     }
 }
