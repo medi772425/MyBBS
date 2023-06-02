@@ -14,4 +14,12 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+// 上から順に評価されるので、通常なら/posts/createもこちらにルーティングされてしまう
+// whereメソッドを使うことで、postは数値だけに制限され、こちらにルーティングされないようにできる。第二引数は正規表現
+// /posts/createのルーティングを単純に順番を変えるだけでも、動くようにはなるが、あとから問題が起こることも考えられるので、whereを使っている
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->where('post', '[0-9]+');
+
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
