@@ -28,3 +28,5 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.e
 
 // webの通信のルールで、新規ではなく一部変更の際はpatchにするようにと定められているため、patch
 Route::patch('/posts/{post}/update', [PostController::class, 'update'])->name('posts.update')->where('post', '[0-9]+');
+
+Route::delete('/posts/{post}/destroy', [PostController::class, 'destroy'])->name('posts.destroy')->where('post', '[0-9]+');
