@@ -13,4 +13,11 @@ class Post extends Model
         'title',
         'body',
     ];
+
+    // コメントテーブルとのリレーション
+    // $post->comments() のような形で、postのデータからcommentテーブルのデータも取得できるようにする
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
